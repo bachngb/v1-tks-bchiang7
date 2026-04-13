@@ -125,7 +125,7 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const skills = ['AWS', 'Azure', 'GCP (Google Cloud Platform)', 'Splunk', 'RStudio', 'Kali Linux'];
+  const skills = ['AWS', 'Azure', 'GCP', 'Splunk', 'RStudio', 'Kali Linux'];
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
@@ -134,7 +134,9 @@ const About = () => {
       <div className="inner">
         <StyledText>
           <div>
-            <p>I’m a Security Engineer who lives by one simple rule: I build things with security in mind.</p>
+            <p>I’m a Security Engineer who lives by one simple rule:</p>
+
+            <p>I build things with security in mind.</p>
             
             <p>My journey started as a "sponge" at <a href="https://iahn.fpt.edu.vn/">a tech university</a> and grew 
             through five years at <a href="https://fpt-is.com/">a major systems integrator</a>. My teams there 
@@ -142,9 +144,9 @@ const About = () => {
             you slap on at the end—it’s an architectural choice. If it’s not secure by design from the first line 
             of code, it’s just not finished.</p>
             
-            <p>After a stint helping our family business, I moved to Australia to broaden my scope. I’m currently 
+            <p>After a stint helping my family business, I moved to Australia to broaden my scope. I’m currently 
               working toward <a href="https://adelaide.edu.au/study/degrees/master-of-information-technology-cyber-security/">my Master of IT</a>
-              , fueled by plenty of coffee and collaborating with some brilliant minds on the 2026 frontiers of <a href="https://hoaio.com/">Quantum</a>, 
+              , fueled by plenty of coffee and collaborating with some brilliant minds on the 2026 frontiers of <a href="https://hoaio.com/">Quantum</a>,  
               <a href="https://www.aisa.org.au/">Cloud Security</a>, and <a href="https://www.aicollective.com/">AI</a>.</p>
 
             <p>Here are a few technologies I’ve been working with recently:</p>
