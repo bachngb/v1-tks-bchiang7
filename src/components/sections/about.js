@@ -134,17 +134,9 @@ const About = () => {
       <div className="inner">
         <StyledText>
           <div>
-            <p>
-              I’m a security engineer who lives by a pretty simple rule: I build things with security in mind. 
-              My obsession with "Information Assurance" started back at {' '}
-              <a href="https://fpt.edu.vn/">a specialized technology university</a>, 
-              where I was lucky enough to be surrounded by {' '}
-              <a href="https://iahn.fpt.edu.vn/">a crew of mentors and peers</a> who were far more 
-              interested in how systems actually worked (and how they broke) than just getting a grade.
-            </p>
             <p>I’m a Security Engineer who lives by one simple rule: I build things with security in mind.</p>
             
-            <p>My journey started as a "sponge" at <a href="https://fpt.edu.vn/">a tech university</a> and grew 
+            <p>My journey started as a "sponge" at <a href="https://iahn.fpt.edu.vn/">a tech university</a> and grew 
             through five years at <a href="https://fpt-is.com/">a major systems integrator</a>. My teams there 
             taught me <a href="https://fpt-is.com/en/fpt-eagleeye/">the real deal</a>: security isn’t a bandage 
             you slap on at the end—it’s an architectural choice. If it’s not secure by design from the first line 
