@@ -125,7 +125,7 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const skills = ['JavaScript (ES6+)', 'TypeScript', 'React', 'Eleventy', 'Node.js', 'WordPress'];
+  const skills = ['AWS', 'Azure', 'GCP (Google Cloud Platform)', 'Splunk', 'RStudio', 'Kali Linux', 'Metasploit', 'Burp Suite', 'Nmap', 'Wireshark', 'Python', 'PowerShell'];
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
@@ -135,30 +135,39 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hello! My name is Brittany and I enjoy creating things that live on the internet. My
-              interest in web development started back in 2012 when I decided to try editing custom
-              Tumblr themes — turns out hacking together a custom reblog button taught me a lot
-              about HTML &amp; CSS!
+              I’m a Security Engineer who lives by a pretty simple rule: I build things with security in mind. 
+              My obsession with "Information Assurance" started back at {' '}
+              <a href="https://fpt.edu.vn/">a specialized technology university</a>, 
+              where I was lucky enough to be surrounded by {' '}
+              <a href="https://iahn.fpt.edu.vn/">a crew of mentors and peers</a> who were far more 
+              interested in how systems actually worked (and how they broke) than just getting a grade.
+            </p>
+
+            <p>I spent the next five years at {' '}
+              <a href="https://fpt-is.com/">a major regional systems integrator</a>, trading the classroom for
+               the high-stakes world of corporate consulting. Navigating the complex maze of global financial 
+               security standards taught me my most valuable lesson: security isn’t a bandage you slap on a project 
+               at the end. It’s an architectural choice. If a system isn’t secure by design from the very first line 
+               of code, it isn't really finished.
+               I spent the next five years at {' '}
+              <a href="https://fpt-is.com/">a major regional systems integrator</a>, where I joined {' '}
+              <a href="https://fpt-is.com/en/fpt-eagleeye/">a team of seasoned 
+               pros</a> who really showed me the ropes. They were the ones who taught me that {' '}
+              <a href="https://fpt-is.com/goc-nhin-so/">technical skill is only half 
+               the battle</a>; the other half is understanding the human and corporate layers behind every system. My teammates 
+               pushed me to see beyond the code, showing me that security isn't a bandage you slap on a project at the 
+               end—it’s an architectural choice. If a system isn’t secure by design from the very first line of code, it isn't really finished.
             </p>
 
             <p>
-              Fast-forward to today, and I’ve had the privilege of working at{' '}
-              <a href="https://us.mullenlowe.com/">an advertising agency</a>,{' '}
-              <a href="https://starry.com/">a start-up</a>,{' '}
-              <a href="https://www.apple.com/">a huge corporation</a>, and{' '}
-              <a href="https://scout.camd.northeastern.edu/">a student-led design studio</a>. My
-              main focus these days is building accessible, inclusive products and digital
-              experiences at <a href="https://upstatement.com/">Upstatement</a> for a variety of
-              clients.
-            </p>
-
-            <p>
-              I also recently{' '}
-              <a href="https://www.newline.co/courses/build-a-spotify-connected-app">
-                launched a course
-              </a>{' '}
-              that covers everything you need to build a web app with the Spotify API using Node
-              &amp; React.
+              I later spent some time helping out with our family’s business, which really changed my perspective. 
+              It taught me that security shouldn’t be a bottleneck—it’s actually there to help a company move forward safely. 
+              Seeking to learn more, I made the move to Australia to join a new community of researchers and practitioners. These days, 
+              you’ll mostly find me (and usually a cup of coffee/tea) working through 
+              <a href="https://adelaide.edu.au/study/degrees/master-of-information-technology-cyber-security/">my Master of IT</a>, 
+              where I feel pretty lucky to be collaborating with some brilliant minds on the 2026 frontiers of {' '}
+              <a href="https://hoaio.com/">Quantum</a>, {' '}
+              <a href="https://www.aisa.org.au/">Cloud Security</a>, and {' '}<a href="https://www.aicollective.com/">AI</a>.
             </p>
 
             <p>Here are a few technologies I’ve been working with recently:</p>
