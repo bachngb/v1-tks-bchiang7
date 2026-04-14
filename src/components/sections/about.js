@@ -139,8 +139,8 @@ const About = () => {
             <p>I build things with security in mind.</p>
             
             <p>My journey started as a "sponge" at <a href="https://iahn.fpt.edu.vn/">a tech university</a> and grew 
-            through five years at <a href="https://fpt-is.com/en/">a leading regional systems integrator</a>. My teams there 
-            taught me <a href="https://fpt-is.com/en/fpt-eagleeye/">the real deal</a>: security isn’t a bandage 
+            through five years at <a href="https://fpt-is.com/en/">a leading regional systems integrator</a>. <a href="https://fpt-is.com/en/fpt-eagleeye/">My team</a> there 
+            taught me the real deal: security isn’t a bandage 
             you slap on at the end—it’s an architectural choice. If it’s not secure by design from the first line 
             of code, it’s just not finished.</p>
             
