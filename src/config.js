@@ -4,23 +4,19 @@ module.exports = {
   socialMedia: [
     {
       name: 'GitHub',
-      url: 'https://github.com/bchiang7',
+      url: 'https://github.com/bachngb',
     },
     {
       name: 'Instagram',
       url: 'https://www.instagram.com/ngo.giabach/',
     },
     {
-      name: 'Twitter',
-      url: 'https://twitter.com/bchiang7',
-    },
-    {
       name: 'Linkedin',
       url: 'https://www.linkedin.com/in/ngogiabach/',
     },
     {
-      name: 'Codepen',
-      url: 'https://codepen.io/bchiang7',
+      name: 'Goodreads',
+      url: 'https://www.goodreads.com/user/show/95558094-b-ch-ng-gia',
     },
   ],
 
