@@ -60,16 +60,17 @@ const Hero = () => {
   }, []);
 
   const one = <h1>Hi, my name is</h1>;
-  const two = <h2 className="big-heading">Bach Ngo Gia</h2>;
-  const three = <h3 className="big-heading">I strive for Secure by design.</h3>;
+  const two = <h2 className="big-heading">Bach Ngo</h2>;
+  const three = <h3 className="big-heading">I try to ask the right questions.</h3>;
   const four = (
     <>
       <p>
-        I’m a security engineer specializing in engineering (and occasionally auditing) trust-based systems. Currently, I’m focused on building secure-by-design products that prioritize organizational integrity while pursuing my Master of IT at {' '}
+        I strive to build resilient systems, then ask the right questions to find 
+        where they break. While completing my Master of IT at {' '}
         <a href="https://adelaideuni.edu.au/" target="_blank" rel="noreferrer">
           Adelaide University
-        </a>
-        .
+        </a>, I’m exploring ways to integrate security-by-design principles into 
+        products that prioritize organizational integrity.
       </p>
     </>
   );
