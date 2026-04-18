@@ -136,7 +136,7 @@ const About = () => {
           <div>
             <p>I’m a security engineer who lives by one simple rule:</p>
 
-            <p>I build things with security in mind.</p>
+            <p>I build secure systems because I’m a big fan of uninterrupted sleep.</p>
             
             <p>My journey started as a "sponge" at <a href="https://iahn.fpt.edu.vn/">a tech university</a> and grew 
             through five years at <a href="https://fpt-is.com/en/">a leading regional systems integrator</a>. <a href="https://fpt-is.com/en/fpt-eagleeye/">My team</a> there 
