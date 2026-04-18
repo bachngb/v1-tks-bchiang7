@@ -65,12 +65,10 @@ const Hero = () => {
   const four = (
     <>
       <p>
-        I strive to build resilient systems, then ask the right questions to find 
-        where they break. While completing my Master of IT at {' '}
-        <a href="https://adelaideuni.edu.au/" target="_blank" rel="noreferrer">
-          Adelaide University
-        </a>, I’m exploring ways to integrate security-by-design principles into 
-        products that prioritize organizational integrity.
+        I focus on building resilient systems and stress-testing them to identify 
+        where they fail. Currently completing my Master of IT at 
+        <a href="https://adelaideuni.edu.au/" target="_blank" rel="noreferrer">Adelaide University</a>,
+         I specialize in embedding security-by-design principles into products that safeguard organizational integrity.
       </p>
     </>
   );

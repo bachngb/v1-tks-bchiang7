@@ -144,7 +144,7 @@ const About = () => {
             you slap on at the end—it’s an architectural choice. If it’s not secure by design from the first line 
             of code, it’s just not finished.</p>
             
-            <p>After a stint helping my family business, I moved to Australia to broaden my scope. I’m currently 
+            <p>After building on five years in Vietnam, I moved to Australia to broaden my scope. I’m currently 
               working toward <a href="https://adelaide.edu.au/study/degrees/master-of-information-technology-cyber-security/">my Master of IT</a>
               , fueled by plenty of coffee and collaborating with some brilliant minds on the 2026 frontiers of <a href="https://hoaio.com/">Quantum</a>, <a href="https://www.aisa.org.au/">Cloud Security</a>, and <a href="https://www.aicollective.com/">AI</a>.</p>
 
