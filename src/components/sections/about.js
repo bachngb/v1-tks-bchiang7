@@ -84,6 +84,7 @@ const StyledPic = styled.div`
       mix-blend-mode: multiply;
       filter: grayscale(100%) contrast(1);
       transition: var(--transition);
+      will-change: filter;
     }
 
     &:before,
@@ -138,15 +139,15 @@ const About = () => {
 
             <p>I build secure systems because I’m a big fan of uninterrupted sleep.</p>
             
-            <p>My journey started as a "sponge" at <a href="https://iahn.fpt.edu.vn/">a tech university</a> and grew 
-            through five years at <a href="https://fpt-is.com/en/">a leading regional systems integrator</a>. <a href="https://fpt-is.com/en/fpt-eagleeye/">My team</a> there 
-            taught me the real deal: security isn’t a bandage 
-            you slap on at the end—it’s an architectural choice. If it’s not secure by design from the first line 
+            <p>My journey started as a "sponge" at <a href="https://iahn.fpt.edu.vn/" target="_blank" rel="noopener noreferrer">a tech university</a> and grew
+            through five years at <a href="https://fpt-is.com/en/" target="_blank" rel="noopener noreferrer">a leading regional systems integrator</a>. <a href="https://fpt-is.com/en/fpt-eagleeye/" target="_blank" rel="noopener noreferrer">My team</a> there
+            taught me the real deal: security isn’t a bandage
+            you slap on at the end—it’s an architectural choice. If it’s not secure by design from the first line
             of code, it’s just not finished.</p>
-            
-            <p>After building on five years in Vietnam, I moved to Australia to broaden my scope. I’m currently 
-              working toward <a href="https://adelaide.edu.au/study/degrees/master-of-information-technology-cyber-security/">my Master of IT</a>
-              , fueled by plenty of coffee and collaborating with some brilliant minds on the 2026 frontiers of <a href="https://hoaio.com/">Quantum</a>, <a href="https://www.aisa.org.au/">Cloud Security</a>, and <a href="https://www.aicollective.com/">AI</a>.</p>
+
+            <p>After building on five years in Vietnam, I moved to Australia to broaden my scope. I’m currently
+              working toward <a href="https://adelaide.edu.au/study/degrees/master-of-information-technology-cyber-security/" target="_blank" rel="noopener noreferrer">my Master of IT</a>
+              , fueled by plenty of coffee and collaborating with some brilliant minds on the 2026 frontiers of <a href="https://hoaio.com/" target="_blank" rel="noopener noreferrer">Quantum</a>, <a href="https://www.aisa.org.au/" target="_blank" rel="noopener noreferrer">Cloud Security</a>, and <a href="https://www.aicollective.com/" target="_blank" rel="noopener noreferrer">AI</a>.</p>
 
             <p>Here are a few technologies I’ve been working with recently:</p>
           </div>

@@ -292,6 +292,7 @@ const StyledProject = styled.li`
       border-radius: var(--border-radius);
       mix-blend-mode: multiply;
       filter: grayscale(100%) contrast(1) brightness(90%);
+      will-change: filter;
 
       @media (max-width: 768px) {
         object-fit: cover;
@@ -365,7 +366,7 @@ const Featured = () => {
                     <p className="project-overline">Featured Project</p>
 
                     <h3 className="project-title">
-                      <a href={external}>{title}</a>
+                      <a href={external} target="_blank" rel="noopener noreferrer">{title}</a>
                     </h3>
 
                     <div
@@ -383,17 +384,17 @@ const Featured = () => {
 
                     <div className="project-links">
                       {cta && (
-                        <a href={cta} aria-label="Course Link" className="cta">
+                        <a href={cta} aria-label="Course Link" className="cta" target="_blank" rel="noopener noreferrer">
                           Learn More
                         </a>
                       )}
                       {github && (
-                        <a href={github} aria-label="GitHub Link">
+                        <a href={github} aria-label="GitHub Link" target="_blank" rel="noopener noreferrer">
                           <Icon name="GitHub" />
                         </a>
                       )}
                       {external && !cta && (
-                        <a href={external} aria-label="External Link" className="external">
+                        <a href={external} aria-label="External Link" className="external" target="_blank" rel="noopener noreferrer">
                           <Icon name="External" />
                         </a>
                       )}
@@ -402,9 +403,13 @@ const Featured = () => {
                 </div>
 
                 <div className="project-image">
-                  <a href={external ? external : github ? github : '#'}>
+                  {(external || github) ? (
+                    <a href={external || github} target="_blank" rel="noopener noreferrer">
+                      <GatsbyImage image={image} alt={title} className="img" />
+                    </a>
+                  ) : (
                     <GatsbyImage image={image} alt={title} className="img" />
-                  </a>
+                  )}
                 </div>
               </StyledProject>
             );
