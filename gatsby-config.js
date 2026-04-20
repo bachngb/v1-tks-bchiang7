@@ -29,7 +29,16 @@ module.exports = {
         icon: 'src/images/logo.png',
       },
     },
-    `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        workboxConfig: {
+          globPatterns: ['**/*'],
+          globIgnores: ['admin/**/*'],
+          navigateFallbackDenylist: [/^\/admin/, /^\/api/],
+        },
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
