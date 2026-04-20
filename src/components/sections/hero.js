@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
 import { navDelay, loaderDelay } from '@utils';
@@ -67,7 +67,7 @@ const Hero = () => {
       <p>
         I focus on building resilient systems and stress-testing them to identify 
         where they fail. Currently completing my Master of IT at 
-        <a href="https://adelaideuni.edu.au/" target="_blank" rel="noreferrer">Adelaide University</a>,
+        <a href="https://adelaideuni.edu.au/" target="_blank" rel="noopener noreferrer">Adelaide University</a>,
          I specialize in embedding security-by-design principles into products that safeguard organizational integrity.
       </p>
     </>
@@ -77,12 +77,12 @@ const Hero = () => {
       className="email-link"
       href="https://substack.com/@bachng"
       target="_blank"
-      rel="noreferrer">
+      rel="noopener noreferrer">
       Check out my blog!
     </a>
   );
 
-  const items = [one, two, three, four, five];
+  const items = useMemo(() => [one, two, three, four, five], [one, two, three, four, five]);
 
   return (
     <StyledHeroSection>

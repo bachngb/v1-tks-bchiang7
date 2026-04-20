@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
@@ -7,7 +7,7 @@ import sr from '@utils/sr';
 import { Icon } from '@components/icons';
 import { usePrefersReducedMotion } from '@hooks';
 
-const StyledProjectsSection = styled.section`
+const StyledWritingSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,6 +16,7 @@ const StyledProjectsSection = styled.section`
     font-size: clamp(24px, 5vw, var(--fz-heading));
   }
 
+  .substack-link,
   .archive-link {
     font-family: var(--font-mono);
     font-size: var(--fz-sm);
@@ -24,7 +25,12 @@ const StyledProjectsSection = styled.section`
     }
   }
 
-  .projects-grid {
+  .section-links {
+    display: flex;
+    gap: 20px;
+  }
+
+  .posts-grid {
     ${({ theme }) => theme.mixins.resetList};
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -43,7 +49,7 @@ const StyledProjectsSection = styled.section`
   }
 `;
 
-const StyledProject = styled.li`
+const StyledPost = styled.li`
   position: relative;
   cursor: default;
   transition: var(--transition);
@@ -51,7 +57,7 @@ const StyledProject = styled.li`
   @media (prefers-reduced-motion: no-preference) {
     &:hover,
     &:focus-within {
-      .project-inner {
+      .post-inner {
         transform: translateY(-7px);
       }
     }
@@ -62,7 +68,7 @@ const StyledProject = styled.li`
     z-index: 1;
   }
 
-  .project-inner {
+  .post-inner {
     ${({ theme }) => theme.mixins.boxShadow};
     ${({ theme }) => theme.mixins.flexBetween};
     flex-direction: column;
@@ -76,11 +82,11 @@ const StyledProject = styled.li`
     overflow: auto;
   }
 
-  .project-top {
+  .post-top {
     ${({ theme }) => theme.mixins.flexBetween};
     margin-bottom: 35px;
 
-    .folder {
+    .bookmark {
       color: var(--green);
       svg {
         width: 40px;
@@ -88,7 +94,7 @@ const StyledProject = styled.li`
       }
     }
 
-    .project-links {
+    .post-links {
       display: flex;
       align-items: center;
       margin-right: -10px;
@@ -114,7 +120,14 @@ const StyledProject = styled.li`
     }
   }
 
-  .project-title {
+  .post-date {
+    margin: 0 0 8px;
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: var(--fz-xxs);
+  }
+
+  .post-title {
     margin: 0 0 10px;
     color: var(--lightest-slate);
     font-size: var(--fz-xxl);
@@ -135,7 +148,7 @@ const StyledProject = styled.li`
     }
   }
 
-  .project-description {
+  .post-description {
     color: var(--light-slate);
     font-size: 17px;
 
@@ -144,7 +157,7 @@ const StyledProject = styled.li`
     }
   }
 
-  .project-tech-list {
+  .post-tags {
     display: flex;
     align-items: flex-end;
     flex-grow: 1;
@@ -165,23 +178,23 @@ const StyledProject = styled.li`
   }
 `;
 
-const Projects = () => {
+const SUBSTACK_URL = 'https://substack.com/@bachng';
+const GRID_LIMIT = 6;
+
+const Writing = () => {
   const data = useStaticQuery(graphql`
     query {
-      projects: allMarkdownRemark(
-        filter: {
-          fileAbsolutePath: { regex: "/content/projects/" }
-          frontmatter: { showInProjects: { ne: false } }
-        }
+      posts: allMarkdownRemark(
+        filter: { fileAbsolutePath: { regex: "/content/writing/" } }
         sort: { fields: [frontmatter___date], order: DESC }
       ) {
         edges {
           node {
             frontmatter {
               title
-              tech
-              github
+              date
               external
+              tags
             }
             html
           }
@@ -192,121 +205,130 @@ const Projects = () => {
 
   const [showMore, setShowMore] = useState(false);
   const revealTitle = useRef(null);
-  const revealArchiveLink = useRef(null);
-  const revealProjects = useRef([]);
+  const revealPosts = useRef([]);
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useEffect(() => {
     if (prefersReducedMotion) {
       return;
     }
-
     sr.reveal(revealTitle.current, srConfig());
-    sr.reveal(revealArchiveLink.current, srConfig());
-    revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
+    revealPosts.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
   }, []);
 
-  const GRID_LIMIT = 6;
-  const projects = data.projects.edges.filter(({ node }) => node);
-  const firstSix = projects.slice(0, GRID_LIMIT);
-  const projectsToShow = showMore ? projects : firstSix;
+  const posts = data.posts.edges.filter(({ node }) => node);
+  const firstSix = posts.slice(0, GRID_LIMIT);
+  const postsToShow = showMore ? posts : firstSix;
 
-  const projectInner = node => {
+  const postInner = useCallback(node => {
     const { frontmatter, html } = node;
-    const { github, external, title, tech } = frontmatter;
+    const { external, title, date, tags } = frontmatter;
+
+    const formattedDate = new Date(date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+    });
 
     return (
-      <div className="project-inner">
+      <div className="post-inner">
         <header>
-          <div className="project-top">
-            <div className="folder">
-              <Icon name="Folder" />
+          <div className="post-top">
+            <div className="bookmark">
+              <Icon name="Bookmark" />
             </div>
-            <div className="project-links">
-              {github && (
-                <a href={github} aria-label="GitHub Link" target="_blank" rel="noreferrer">
-                  <Icon name="GitHub" />
-                </a>
-              )}
+            <div className="post-links">
               {external && (
                 <a
                   href={external}
-                  aria-label="External Link"
+                  aria-label="Read on Substack"
                   className="external"
                   target="_blank"
-                  rel="noreferrer">
+                  rel="noopener noreferrer">
                   <Icon name="External" />
                 </a>
               )}
             </div>
           </div>
 
-          <h3 className="project-title">
-            <a href={external} target="_blank" rel="noreferrer">
+          <p className="post-date">{formattedDate}</p>
+
+          <h3 className="post-title">
+            <a href={external} target="_blank" rel="noopener noreferrer">
               {title}
             </a>
           </h3>
 
-          <div className="project-description" dangerouslySetInnerHTML={{ __html: html }} />
+          <div className="post-description" dangerouslySetInnerHTML={{ __html: html }} />
         </header>
 
         <footer>
-          {tech && (
-            <ul className="project-tech-list">
-              {tech.map((tech, i) => (
-                <li key={i}>{tech}</li>
+          {tags && (
+            <ul className="post-tags">
+              {tags.map((tag, i) => (
+                <li key={i}>{tag}</li>
               ))}
             </ul>
           )}
         </footer>
       </div>
     );
-  };
+  }, []);
 
   return (
-    <StyledProjectsSection>
-      <h2 ref={revealTitle}>Other Noteworthy Projects</h2>
+    <StyledWritingSection id="writing">
+      <h2 className="numbered-heading" ref={revealTitle}>
+        Writing
+      </h2>
 
-      <Link className="inline-link archive-link" to="/archive" ref={revealArchiveLink}>
-        view the archive
-      </Link>
+      <div className="section-links">
+        <a
+          className="inline-link substack-link"
+          href={SUBSTACK_URL}
+          target="_blank"
+          rel="noopener noreferrer">
+          read all on substack
+        </a>
+        <Link className="inline-link archive-link" to="/archive">
+          view the archive
+        </Link>
+      </div>
 
-      <ul className="projects-grid">
+      <ul className="posts-grid">
         {prefersReducedMotion ? (
           <>
-            {projectsToShow &&
-              projectsToShow.map(({ node }, i) => (
-                <StyledProject key={i}>{projectInner(node)}</StyledProject>
-              ))}
+            {postsToShow.map(({ node }, i) => (
+              <StyledPost key={i}>{postInner(node)}</StyledPost>
+            ))}
           </>
         ) : (
           <TransitionGroup component={null}>
-            {projectsToShow &&
-              projectsToShow.map(({ node }, i) => (
-                <CSSTransition
+            {postsToShow.map(({ node }, i) => (
+              <CSSTransition
+                key={i}
+                classNames="fadeup"
+                timeout={i >= GRID_LIMIT ? (i - GRID_LIMIT) * 300 : 300}
+                exit={false}>
+                <StyledPost
                   key={i}
-                  classNames="fadeup"
-                  timeout={i >= GRID_LIMIT ? (i - GRID_LIMIT) * 300 : 300}
-                  exit={false}>
-                  <StyledProject
-                    key={i}
-                    ref={el => (revealProjects.current[i] = el)}
-                    style={{
-                      transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
-                    }}>
-                    {projectInner(node)}
-                  </StyledProject>
-                </CSSTransition>
-              ))}
+                  ref={el => (revealPosts.current[i] = el)}
+                  style={{
+                    transitionDelay: `${i >= GRID_LIMIT ? (i - GRID_LIMIT) * 100 : 0}ms`,
+                  }}>
+                  {postInner(node)}
+                </StyledPost>
+              </CSSTransition>
+            ))}
           </TransitionGroup>
         )}
       </ul>
 
-      <button className="more-button" onClick={() => setShowMore(!showMore)}>
-        Show {showMore ? 'Less' : 'More'}
-      </button>
-    </StyledProjectsSection>
+      {posts.length > GRID_LIMIT && (
+        <button className="more-button" onClick={() => setShowMore(!showMore)}>
+          Show {showMore ? 'Less' : 'More'}
+        </button>
+      )}
+    </StyledWritingSection>
   );
 };
 
-export default Projects;
+export default Writing;
