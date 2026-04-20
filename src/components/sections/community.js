@@ -306,12 +306,8 @@ const Community = () => {
         <p>Get notified about upcoming events, workshops, and community meetups.</p>
         <form
           className="subscribe-form"
-          name="community-subscribe"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="community-subscribe" />
-          <input type="hidden" name="bot-field" />
+          action="https://formspree.io/f/YOUR_FORM_ID"
+          method="POST">
           <input type="email" name="email" placeholder="your@email.com" required />
           <button type="submit">Subscribe</button>
         </form>
