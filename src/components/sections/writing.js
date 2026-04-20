@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import styled from 'styled-components';
 import { srConfig } from '@config';
@@ -16,12 +16,18 @@ const StyledWritingSection = styled.section`
     font-size: clamp(24px, 5vw, var(--fz-heading));
   }
 
-  .substack-link {
+  .substack-link,
+  .archive-link {
     font-family: var(--font-mono);
     font-size: var(--fz-sm);
     &:after {
       bottom: 0.1em;
     }
+  }
+
+  .section-links {
+    display: flex;
+    gap: 20px;
   }
 
   .posts-grid {
@@ -274,13 +280,18 @@ const Writing = () => {
         Writing
       </h2>
 
-      <a
-        className="inline-link substack-link"
-        href={SUBSTACK_URL}
-        target="_blank"
-        rel="noopener noreferrer">
-        read all on substack
-      </a>
+      <div className="section-links">
+        <a
+          className="inline-link substack-link"
+          href={SUBSTACK_URL}
+          target="_blank"
+          rel="noopener noreferrer">
+          read all on substack
+        </a>
+        <Link className="inline-link archive-link" to="/archive">
+          view the archive
+        </Link>
+      </div>
 
       <ul className="posts-grid">
         {prefersReducedMotion ? (
