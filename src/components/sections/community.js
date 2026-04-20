@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
+import { useForm, ValidationError } from '@formspree/react';
 import styled from 'styled-components';
 import { srConfig } from '@config';
 import sr from '@utils/sr';
@@ -97,6 +98,21 @@ const StyledCommunitySection = styled.section`
         ${({ theme }) => theme.mixins.button};
         white-space: nowrap;
       }
+    }
+
+    .subscribe-success {
+      color: var(--green);
+      font-family: var(--font-mono);
+      font-size: var(--fz-sm);
+      margin-top: 10px;
+    }
+
+    .subscribe-error {
+      color: #e06c75;
+      font-family: var(--font-mono);
+      font-size: var(--fz-xxs);
+      margin-top: 6px;
+      text-align: left;
     }
   }
 `;
@@ -217,6 +233,8 @@ const Community = () => {
     }
   `);
 
+  const [formState, handleSubmit] = useForm('mkokzdva');
+
   const revealTitle = useRef(null);
   const revealSection = useRef(null);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -304,17 +322,28 @@ const Community = () => {
       <div className="subscribe-section">
         <h3>Stay in the loop</h3>
         <p>Get notified about upcoming events, workshops, and community meetups.</p>
-        <form
-          className="subscribe-form"
-          name="community-subscribe"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="community-subscribe" />
-          <input type="hidden" name="bot-field" />
-          <input type="email" name="email" placeholder="your@email.com" required />
-          <button type="submit">Subscribe</button>
-        </form>
+        {formState.succeeded ? (
+          <p className="subscribe-success">You're subscribed — I'll be in touch!</p>
+        ) : (
+          <form className="subscribe-form" onSubmit={handleSubmit}>
+            <input
+              type="email"
+              name="email"
+              placeholder="your@email.com"
+              required
+              aria-label="Email address"
+            />
+            <button type="submit" disabled={formState.submitting}>
+              {formState.submitting ? 'Subscribing…' : 'Subscribe'}
+            </button>
+          </form>
+        )}
+        <ValidationError
+          field="email"
+          prefix="Email"
+          errors={formState.errors}
+          className="subscribe-error"
+        />
       </div>
     </StyledCommunitySection>
   );
