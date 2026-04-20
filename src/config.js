@@ -34,6 +34,10 @@ module.exports = {
       url: '/#writing',
     },
     {
+      name: 'Community',
+      url: '/#community',
+    },
+    {
       name: 'Contact',
       url: '/#contact',
     },
